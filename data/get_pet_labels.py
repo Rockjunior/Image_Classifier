@@ -40,6 +40,53 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-    # Replace None with the results_dic dictionary that you created with this
-    # function
-    return None
+    # Creates list of files in directory
+    in_files = listdir(image_dir)
+    
+    # Processes each of the files to create a dictionary where the key
+    # is the filename and the value is the picture label (below).
+ 
+    # Creates empty dictionary for the results (pet labels, etc.)
+    results_dic = dict()
+   
+    # Processes through each file in the directory, extracting only the words
+    # of the file that contain the pet image label
+    for idx in range(0, len(in_files), 1):
+       
+       # Skips file if starts with . (like .DS_Store of Mac OSX) because it 
+       # isn't an pet image file
+       if in_files[idx][0] != ".":
+           
+           # Creates temporary label variable to hold pet label name extracted 
+           pet_label = ""
+
+           # Process filename to extract dog breed name
+           # Split by underscore and remove extension and numbers
+           word_list = in_files[idx].split('_')
+           pet_name = ''
+           
+           # Process each word in the filename
+           for word in word_list:
+               # Remove file extension
+               if '.' in word:
+                   word = word.split('.')[0]
+               
+               # Check if word is alphabetic (not numbers)
+               if word.isalpha():
+                   pet_name += word + ' '
+           
+           # Format the pet label: lowercase and strip whitespace
+           pet_label = pet_name.lower().strip()
+
+           # If filename doesn't already exist in dictionary add it and it's
+           # pet label - otherwise print an error message because indicates 
+           # duplicate files (filenames)
+           if in_files[idx] not in results_dic:
+              results_dic[in_files[idx]] = [pet_label]
+              
+           else:
+               print("** Warning: Duplicate files exist in directory:", 
+                     in_files[idx])
+ 
+    # Replace None with the results_dic dictionary that you created with this function
+    return results_dic
