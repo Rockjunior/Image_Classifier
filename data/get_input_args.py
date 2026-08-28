@@ -9,7 +9,7 @@
 #          from the user using the Argparse Python module. If the user fails to 
 #          provide some or all of the 3 inputs, then the default values are
 #          used for the missing inputs. Command Line Arguments:
-#     1. Image Folder as --dir with default value 'pet_images'
+#     1. Image Folder as --dir with default value 'pet_images/'
 #     2. CNN Model Architecture as --arch with default value 'vgg'
 #     3. Text File with Dog Names as --dogfile with default value 'dognames.txt'
 #
@@ -29,7 +29,7 @@ def get_input_args():
     the user fails to provide some or all of the 3 arguments, then the default 
     values are used for the missing arguments. 
     Command Line Arguments:
-      1. Image Folder as --dir with default value 'pet_images'
+      1. Image Folder as --dir with default value 'pet_images/'
       2. CNN Model Architecture as --arch with default value 'vgg'
       3. Text File with Dog Names as --dogfile with default value 'dognames.txt'
     This function returns these arguments as an ArgumentParser object.
@@ -41,9 +41,9 @@ def get_input_args():
     # Create Parse using ArgumentParser
     parser = argparse.ArgumentParser()
     # Create 3 command line arguments as mentioned above using add_argument() from ArguementParser method
-    parser.add_argument('--dir', type=str, default='data/pet_images', help='path to the image directory')
+    parser.add_argument('--dir', type=str, default='pet_images/', help='path to the image directory')
     parser.add_argument('--arch', type=str, default='vgg', help='CNN model architecture')
-    parser.add_argument('--dogfile', type=str, default='data/dognames.txt', help='path to the dog names file')
+    parser.add_argument('--dogfile', type=str, default='dognames.txt', help='path to the dog names file')
     
     # Replace None with parser.parse_args() parsed argument collection that 
     in_args = parser.parse_args()
